@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.softdelete.Entity.Books;
@@ -30,8 +31,8 @@ public class BookController {
     }
 
     @GetMapping
-    public Iterable<Books> findAll(){
-        return bookService.findAll();
+    public Iterable<Books> findAll(@RequestParam(value = "isDeleted", required = false, defaultValue = "false") boolean isDeleted){
+        return bookService.findAll(isDeleted);
     }
     
 }
